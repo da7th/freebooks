@@ -29,7 +29,7 @@ function Card() {
               {book.volumeInfo.categories}
             </span>
             <h3 className="card-title">{book.volumeInfo.title}</h3>
-            <button className="card-button">Acessar conteúdo</button>
+            <button className="card-button">Acessar Livro</button>
           </div>
         </div>
       ))}
