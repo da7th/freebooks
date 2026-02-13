@@ -6,17 +6,6 @@ function Main() {
     <main className="content">
       <div className="content-grid">
         <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
       </div>
     </main>
   );
