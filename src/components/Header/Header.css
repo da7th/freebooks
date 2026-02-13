@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Library Regular';
+    src: url('./Library.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -8,11 +15,12 @@
 }
 
 .header-logo a {
-    font-size: 1.4rem;
+    font-family: 'Library Regular';
+    font-size: 2rem;
     font-weight: 800;
     color: #8B5E3C;
     letter-spacing: -0.5px;
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
 }
 
 

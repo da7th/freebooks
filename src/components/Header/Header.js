@@ -4,7 +4,7 @@ function Header() {
   return (
     <nav className='header-container'>
         <div className='header-logo'>
-            <a href="/">FREEBOOKS</a>
+            <a href="/">Freebooks</a>
         </div>
 
         <div className='header-menu'>
