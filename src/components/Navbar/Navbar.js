@@ -4,11 +4,11 @@ function Navbar() {
     return (
         <div>
             <nav className="nav-menu">
-                <a href="/" className="navbar-category">Categoria 1</a>
-                <a href="/" className="navbar-category">Categoria 2</a>
-                <a href="/" className="navbar-category">Categoria 3</a>
-                <a href="/" className="navbar-category">Categoria 4</a>
-                <a href="/" className="navbar-category">Categoria 5</a>
+                <a href="/" className="navbar-category">Novidades</a>
+                <a href="/" className="navbar-category">Best Sellers</a>
+                <a href="/" className="navbar-category">Infantis</a>
+                <a href="/" className="navbar-category">Didáticos</a>
+                <a href="/" className="navbar-category">Sobre Nós</a>
             </nav>
         </div>
     );
