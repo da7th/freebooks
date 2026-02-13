@@ -1,49 +1,44 @@
-/* Fundo que escurece e isola o site */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.85); /* Preto com transparência */
-  backdrop-filter: blur(5px); /* Efeito de desfoque no fundo do site */
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
 }
 
-/* Caixa do Modal */
 .modal-container {
-  background-color: #121212; /* Fundo escuro sólido */
+  background-color: #FCF8F1; 
   padding: 40px;
   border-radius: 12px;
-  border: 1px solid #ff0000; /* Borda vermelha fina */
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); /* Brilho neon vermelho */
+  border: 1px solid #8B5E3C; 
+  /* box-shadow: 0 0 20px #8B5E3C; */
   text-align: center;
   max-width: 400px;
   width: 90%;
 }
 
-/* Título SUCESSO! */
 .modal-title {
-  color: #ff0000;
+  color: #8B5E3C;
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 15px;
   text-transform: uppercase;
 }
 
-/* Texto informativo */
 .modal-text {
-  color: #ffffff;
+  color: #8B5E3C;
   font-size: 1.1rem;
   margin-bottom: 30px;
 }
 
-/* Botão Fechar */
 .modal-button {
-  background-color: #ff0000;
+  background-color: #8B5E3C;
   color: white;
   border: none;
   padding: 12px 40px;
@@ -56,6 +51,6 @@
 }
 
 .modal-button:hover {
-  background-color: #cc0000;
+  background-color: #3E2723;
   transform: scale(1.02);
 }
