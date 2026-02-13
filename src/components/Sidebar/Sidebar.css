@@ -1,0 +1,38 @@
+.sidebar-title {
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    color: #8B5E3C;
+    margin-bottom: 20px;
+    margin-right: 135px;
+    margin-top: 40px;
+    padding: 0 10px;         /* Evita que o texto encoste nas bordas em nomes longos */
+}
+
+.sidebar-div {
+    width: 250px;
+    min-width: 250px;
+    background-color: #FCF8F1;
+    padding: 20px 0;
+    /* border-right: 1px solid #eee; */
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.x-name {
+    text-decoration: none;
+    color: #8B5E3C;
+    padding: 10px 25px;
+    font-size: 0.9rem;
+    font-family: sans-serif;
+    transition: all 0.2s ease;
+}
+
+.x-name:hover {
+    color: white;
+    background-color: #8B5E3C;
+    padding-left: 30px;
+}
