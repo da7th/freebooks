@@ -7,15 +7,15 @@ function Navbar({onSelectGenre}) {
         <button onClick={() => onSelectGenre('*')} className="navbar-category">
           New Books
         </button>
-        <a href="/" className="navbar-category">
+        <button onClick={() => onSelectGenre('bestsellers')} className="navbar-category">
           Best Sellers
-        </a>
-        <a href="/" className="navbar-category">
+        </button >
+        <button onClick={() => onSelectGenre('juvenile')} className="navbar-category">
           Juvenile
-        </a>
-        <a href="/" className="navbar-category">
+        </button>
+        <button onClick={() => onSelectGenre('education')}  className="navbar-category">
           Didatic
-        </a>
+        </button>
         <a href="/" className="navbar-category">
           About Us
         </a>
