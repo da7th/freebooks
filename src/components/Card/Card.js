@@ -8,7 +8,7 @@ function Card({genre}) {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const apiKey = "AIzaSyCF6-ohKrgU1H_cx_Zmq7lk4CbPsKMvZkU";
+      const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_KEY;
       const url = `https://www.googleapis.com/books/v1/volumes?q=subject:${genre}&orderBy=newest&maxResults=40&key=${apiKey}`;
 
       try {
