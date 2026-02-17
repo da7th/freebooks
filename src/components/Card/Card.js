@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 function Card({genre}) {
 
   const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -17,11 +18,17 @@ function Card({genre}) {
         console.log(data);
       } catch (error) {
         console.error("Erro na busca: ", error);
+      } finally {
+        setLoading(false);
       }
     }
 
     fetchBooks();
   }, [genre]);
+
+    if(loading) {
+      return <div className="loading">Carregamdo livros...</div>
+    }
 
   return (
     <>
