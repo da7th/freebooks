@@ -32,7 +32,7 @@ function Header() {
           Login
         </a>
         <a href="/register" className="register-btn">
-          Registro
+          Register
         </a>
       </div>
     </nav>

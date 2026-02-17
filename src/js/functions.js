@@ -7,3 +7,7 @@ export async function getBooks() {
 
     return books;
 }
+
+export async function getCategories() {
+    
+}

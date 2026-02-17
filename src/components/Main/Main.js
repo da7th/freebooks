@@ -1,11 +1,11 @@
 import "./Main.css"
 import Card from "../Card/Card";
 
-function Main() {
+function Main({genre}) {
   return (
     <main className="content">
       <div className="content-grid">
-        <Card />
+        <Card genre={genre} />
       </div>
     </main>
   );
