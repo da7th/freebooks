@@ -46,6 +46,7 @@
 }
 
 .card-button {
+    width: 100%;
     background-color: #8B5E3C;
     color: white;
     border: none;

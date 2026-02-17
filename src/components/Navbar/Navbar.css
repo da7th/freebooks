@@ -19,6 +19,12 @@
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
     position: relative;
+
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
 }
 
 .navbar-category:hover {

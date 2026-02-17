@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="app-container">
       <Header />
-      <Navbar />
+      <Navbar onSelectGenre={setActiveGenre} />
 
       <div className="main-layout">
         <Sidebar onSelectGenre={setActiveGenre} activeGenre={activeGenre} />

@@ -14,20 +14,20 @@ function RegisterForm() {
     <div>
       <div className="form-div">
         <h1 className="login-title">Registro</h1>
-        <form onSubmit={handleRegister}>
-          <label>Nome de usuário:</label>
-          <input type="text" name="username" />
+        <form className="login-register-form" onSubmit={handleRegister}>
+          <label className="login-register-label" >Nome de usuário:</label>
+          <input className="login-register-input" type="text" name="username" />
 
-          <label>E-mail:</label>
-          <input type="email" name="email" />
+          <label className="login-register-label">E-mail:</label>
+          <input className="login-register-input" type="email" name="email" />
 
-          <label>Senha:</label>
-          <input type="password" name="password" />
+          <label className="login-register-label">Senha:</label>
+          <input className="login-register-input" type="password" name="password" />
 
-          <label>Confirme sua senha:</label>
-          <input type="password" name="password" />
+          <label className="login-register-label">Confirme sua senha:</label>
+          <input className="login-register-input" type="password" name="password" />
 
-          <button type="submit">Registrar</button>
+          <button className="login-register-button" type="submit">Registrar</button>
         </form>
       </div>
 

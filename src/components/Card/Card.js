@@ -8,7 +8,7 @@ function Card({genre}) {
   useEffect(() => {
     const fetchBooks = async () => {
       const apiKey = "AIzaSyCF6-ohKrgU1H_cx_Zmq7lk4CbPsKMvZkU";
-      const url = `https://www.googleapis.com/books/v1/volumes?q=subject:${genre}&orderBy=newest&maxResults=20&key=${apiKey}`;
+      const url = `https://www.googleapis.com/books/v1/volumes?q=subject:${genre}&orderBy=newest&maxResults=40&key=${apiKey}`;
 
       try {
         const response = await fetch(url);
