@@ -1,14 +1,14 @@
 import "./Header.css";
 
-function Header() {
+function Header({search, setSearch}) {
   return (
     <nav className="header-container">
       <div className="header-logo">
         <a href="/">Freebooks</a>
       </div>
 
-      <form className="search-bar" action="/" method="GET">
-        <input type="search" placeholder="Pesquisar" />
+      <form className="search-bar" onSubmit={(e) => e.preventDefault()}>
+        <input type="search" placeholder="Pesquisar" value={search} onChange={(e) => setSearch(e.target.value)} />
         <button type="submit">
           <svg
             width="20"

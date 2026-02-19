@@ -7,15 +7,16 @@ import { useState } from "react";
 
 function App() {
   const [activeGenre, setActiveGenre] = useState('fiction');
+  const [search, setSearch] = useState("");
 
   return (
     <div className="app-container">
-      <Header />
+      <Header setSearch={setSearch} search={search}/>
       <Navbar onSelectGenre={setActiveGenre} />
 
       <div className="main-layout">
         <Sidebar onSelectGenre={setActiveGenre} activeGenre={activeGenre} />
-          <Main genre={activeGenre} />
+          <Main genre={activeGenre} search={search} />
       </div>
     </div>
   );

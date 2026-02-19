@@ -1,10 +1,10 @@
 import "./Card.css";
 import { useState, useEffect } from "react";
 
-function Card({genre}) {
-
-  const [books, setBooks] = useState([]);
+function Card({ genre, search }) {
   const [loading, setLoading] = useState(true);
+  const [originalData, setOriginalData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -14,33 +14,45 @@ function Card({genre}) {
       try {
         const response = await fetch(url);
         const data = await response.json();
-        setBooks(data.items || []);
-        console.log(data);
+        setOriginalData(data.items || []);
+        setFilteredData(data.items || []);
       } catch (error) {
         console.error("Erro na busca: ", error);
       } finally {
         setLoading(false);
       }
-    }
-
+    };
     fetchBooks();
   }, [genre]);
 
-    if(loading) {
-      return <div className="loading">Carregamdo livros...</div>
-    }
+  useEffect(() => {
+    const lowerSearch = (search || "").toLowerCase();
+    const filtered = originalData.filter((item) => {
+      const title = item.volumeInfo?.title?.toLowerCase() || "";
+      return title.includes(lowerSearch);
+    });
+    setFilteredData(filtered);
+  }, [search, originalData]);
+
+  if (loading) {
+    return <div className="loading">Carregamdo livros...</div>;
+  }
 
   return (
     <>
-      {books.map((book) => (
+      {filteredData.map((book) => (
         <div key={book.id} className="card-container">
           <div className="card-image">
-            <img src={book.volumeInfo.imageLinks?.thumbnail || "https://via.placeholder.com/128x192?text=Sem+Capa"} alt={book.volumeInfo.title} />
+            <img
+              src={
+                book.volumeInfo.imageLinks?.thumbnail ||
+                "https://via.placeholder.com/128x192?text=Sem+Capa"
+              }
+              alt={book.volumeInfo.title}
+            />
           </div>
           <div className="card-info">
-            <span className="card-category">
-              {book.volumeInfo.categories}
-            </span>
+            <span className="card-category">{book.volumeInfo.categories}</span>
             <h3 className="card-title">{book.volumeInfo.title}</h3>
             <button className="card-button">Access Book</button>
           </div>
