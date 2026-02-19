@@ -1,10 +1,19 @@
 import "./Card.css";
 import { useState, useEffect } from "react";
+import BookDetailsModal from '../BookDetailsModal/BookDetailsModal'
 
 function Card({ genre, search }) {
   const [loading, setLoading] = useState(true);
   const [originalData, setOriginalData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedBook, setSelectedBook] = useState(null);
+
+  const handleBookDetails = (book) => {
+    setSelectedBook(book);
+    setOpenModal(true);
+  };
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -54,10 +63,12 @@ function Card({ genre, search }) {
           <div className="card-info">
             <span className="card-category">{book.volumeInfo.categories}</span>
             <h3 className="card-title">{book.volumeInfo.title}</h3>
-            <button className="card-button">Access Book</button>
+            <button className="card-button" onClick={() => handleBookDetails(book)}>Access Book</button>
           </div>
         </div>
       ))}
+
+      <BookDetailsModal isOpen={openModal} setOpenModal={setOpenModal} book={selectedBook} />
     </>
   );
 }
