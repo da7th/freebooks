@@ -6,14 +6,14 @@ function Sidebar({onSelectGenre, activeGenre}) {
 const categories = [
   'Fiction', 'Fantasy', 'Romance', 'Thriller', 'Mystery', 'Horror', 
   'Biography', 'History', 'Science', 'Philosophy', 'Religion', 'Art', 
-  'Psychology', 'Cooking', 'Juvenile', 'Computers', 'Business',
-  'Poetry', 'Drama', 'Education', 'Self-Help', 'Health', 'Fitness',
+  'Psychology', 'Cooking', 'Juvenile Fiction', 'Computers', 'Business',
+  'Poetry', 'Drama', 'Education', 'Self-help', 'Health', 'Fitness',
   'Medical', 'Law', 'Music', 'Photography', 'Architecture', 'Design',
   'Travel', 'Gardening', 'Pets', 'Nature', 'Sports', 'Recreation',
   'True Crime', 'Social Science', 'Political Science', 'Economics', 
   'Mathematics', 'Technology', 'Engineering', 'Crafts', 'Antiques', 
-  'Comics', 'Graphic Novels', 'Language Arts', 'Foreign Languages',
-  'Reference', 'Family', 'Relationships', 'Humor'
+  'Comics', 'Graphic Novels', 'Language Arts', 'Reference', 
+  'Family', 'Relationships', 'Humor'
 ];
 
   return (

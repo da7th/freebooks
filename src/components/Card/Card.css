@@ -1,62 +1,88 @@
 .card-container {
-    background-color: #FFFFFF;
-    /* background-color: red; */
-    /* border: 1px solid #D4AF37; */
-    border-radius: 8px;
-    padding: 15px;
-    text-align: center;
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  width: 35vh;
+  box-sizing: border-box;
 }
 
 .card-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.card-image {
+  width: 100%;
+  height: 300px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  flex-shrink: 0;
 }
 
 .card-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-    margin-bottom: 15px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .card-category {
-    font-size: 0.75rem;
-    color: #8B5E3C;
-    text-transform: uppercase;
-    font-weight: 600;
+  font-size: 0.75rem;
+  color: #8b5e3c;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
 }
 
 .card-title {
-    font-size: 1rem;
-    color: #8B5E3C;
-    margin: 20px 0;
+font-size: 1rem;
+    color: #8b5e3c;
+    margin: 10px 0;
     font-weight: 500;
-    min-height: 40px; /* Mantém o alinhamento se o nome for curto */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    
+    height: 2.4em;
+    line-height: 1.2em;
 }
 
 .card-price {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 15px;
 }
 
 .card-button {
-    width: 100%;
-    background-color: #8B5E3C;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.3s;
+  width: 100%;
+  background-color: #8b5e3c;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
 }
 
 .card-button:hover {
-    background-color: #3E2723;
+  background-color: #3e2723;
 }

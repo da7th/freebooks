@@ -3,7 +3,7 @@ import "./BookDetailsModal.css";
 function BookDetailsModal({ isOpen, setOpenModal, book }) {
   if (!isOpen || !book) return null;
   
-  const info = book?.volumeInfo;
+  const info = book;
 
   if (!info) {
     return (
