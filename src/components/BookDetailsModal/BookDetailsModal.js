@@ -2,8 +2,18 @@ import "./BookDetailsModal.css";
 
 function BookDetailsModal({ isOpen, setOpenModal, book }) {
   if (!isOpen || !book) return null;
-  
+
   const info = book;
+
+  let coverUrl = "https://via.placeholder.com/128x192?text=Sem+Capa";
+
+  if (book.cover_i) {
+    coverUrl = `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`;
+  } else if (book.cover_edition_key) {
+    coverUrl = `https://covers.openlibrary.org/b/olid/${book.cover_edition_key}-M.jpg`;
+  } else if (book.isbn && book.isbn.length > 0) {
+    coverUrl = `https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-M.jpg`;
+  }
 
   if (!info) {
     return (
@@ -27,7 +37,7 @@ function BookDetailsModal({ isOpen, setOpenModal, book }) {
           <div className="modal-left">
             <img
               src={
-                info.imageLinks?.thumbnail || "https://via.placeholder.com/150"
+                coverUrl || "https://via.placeholder.com/150"
               }
               alt={info.title}
               className="modal-cover"
@@ -43,20 +53,20 @@ function BookDetailsModal({ isOpen, setOpenModal, book }) {
 
             <div className="modal-scroll-area">
               <p className="modal-description">
-                {info.description?.replace(/<[^>]*>?/gm, "") ||
+                {info.fullDescription?.replace(/<[^>]*>?/gm, "") ||
                   "Sem descrição disponível."}
               </p>
             </div>
 
             <div className="modal-meta">
               <span>
-                <strong>Páginas:</strong> {info.pageCount || "N/A"}
+                <strong>Páginas:</strong> {info.number_of_pages_median || "N/A"}
               </span>
               <span>
-                <strong>Editora:</strong> {info.publisher || "N/A"}
+                <strong>Editora:</strong> {info.publisher[0] || "N/A"}
               </span>
               <span>
-                <strong>Ano:</strong> {info.publishedDate?.split("-")[0]}
+                <strong>Ano:</strong> {info.first_publish_year}
               </span>
             </div>
 

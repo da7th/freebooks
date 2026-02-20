@@ -10,9 +10,30 @@ function Card({ genre, search }) {
   const [openModal, setOpenModal] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
 
-  const handleBookDetails = (book) => {
+  const handleBookDetails = async (book) => {
+    try{
+    const response = await fetch(`https://openlibrary.org${book.key}.json`);
+    const data = await response.json();
+
+    let descriptionText = "Sem descrição disponível.";
+
+if (data.description) {
+      descriptionText = typeof data.description === 'object' 
+        ? data.description.value 
+        : data.description;
+    }
+
+    setSelectedBook({
+      ...book,
+      fullDescription: descriptionText
+    });
+    
+    setOpenModal(true);
+  } catch (error) {
+    console.error("Erro ao buscar descrição:", error);
     setSelectedBook(book);
     setOpenModal(true);
+  }
   };
 
   useEffect(() => {
@@ -22,7 +43,7 @@ function Card({ genre, search }) {
         ? `+subject:${genre.toLowerCase().replace(" ", "_")}`
         : "";
 
-      const url = `https://openlibrary.org/search.json?q=has_fulltext:true+language:por${genreQuery}&sort=new&fields=title,author_name,cover_i,cover_edition_key,subject,key`;
+      const url = `https://openlibrary.org/search.json?q=has_fulltext:true+language:por${genreQuery}&sort=new&fields=title,author_name,cover_i,subject,key,number_of_pages_median,publisher,first_publish_year`;
 
       try {
         const response = await fetch(url);
@@ -92,7 +113,7 @@ function Card({ genre, search }) {
               <span className="card-category">{categoria}</span>
               <h3 className="card-title">{book.title}</h3>
               <p className="card-author">
-                {book.author_name ? book.author_name[0] : "Autor Desconhecido"}
+                {book.author_name[0] || "Autor Desconhecido"}
               </p>
               <button
                 className="card-button"
