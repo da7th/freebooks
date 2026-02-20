@@ -12,7 +12,7 @@ export function useCard(genre, search) {
 
   const handleBookDetails = async (book) => {
     try {
-      const response = await fetch(`${BASE_URL}${book.key}.json`);
+      const response = await fetch(`https://openlibrary.org${book.key}.json`);
       const data = await response.json();
 
       let descriptionText = "Sem descrição disponível.";
@@ -31,7 +31,10 @@ export function useCard(genre, search) {
 
       setOpenModal(true);
     } catch (error) {
-      console.error("Erro ao buscar descrição:", error);
+      setSelectedBook({
+        ...book,
+        fullDescription: "Não foi possível carregar a descrição no momento.",
+      });
       setSelectedBook(book);
       setOpenModal(true);
     }
@@ -44,7 +47,7 @@ export function useCard(genre, search) {
         ? `+subject:${genre.toLowerCase().replace(" ", "_")}`
         : "";
 
-      const url = `${BASE_URL}search.json?q=has_fulltext:true+language:por${genreQuery}&sort=new&fields=title,author_name,cover_i,subject,key,number_of_pages_median,publisher,first_publish_year`;
+      const url = `${BASE_URL}search.json?q=ebook_access:public+language:por${genreQuery}&sort=new&fields=title,author_name,cover_i,subject,key,number_of_pages_median,publisher,first_publish_year,ia`;
 
       try {
         const response = await fetch(url);

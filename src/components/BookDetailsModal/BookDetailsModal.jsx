@@ -5,6 +5,16 @@ function BookDetailsModal({ isOpen, setOpenModal, book }) {
 
   const info = book;
 
+  const handleReadNow = () => {
+    const iaId = info.ia ? info.ia[0] : null;
+
+    if (iaId) {
+      window.open(`https://archive.org/details/${iaId}/mode/2up`, "_blank");
+    } else {
+      window.open(`https://openlibrary.org${info.key}`, "_blank");
+    }
+  };
+
   let coverUrl = "https://via.placeholder.com/128x192?text=Sem+Capa";
 
   if (book.cover_i) {
@@ -36,9 +46,7 @@ function BookDetailsModal({ isOpen, setOpenModal, book }) {
         <div className="modal-content">
           <div className="modal-left">
             <img
-              src={
-                coverUrl || "https://via.placeholder.com/150"
-              }
+              src={coverUrl || "https://via.placeholder.com/150"}
               alt={info.title}
               className="modal-cover"
             />
@@ -46,10 +54,10 @@ function BookDetailsModal({ isOpen, setOpenModal, book }) {
 
           <div className="modal-right">
             <span className="modal-category">
-              {info.categories?.[0] || "Geral"}
+              {info.subject?.[0] || "Geral"}
             </span>
             <h2 className="modal-title">{info.title}</h2>
-            <h3 className="modal-author">{info.authors?.join(", ")}</h3>
+            <h3 className="modal-author">{info.author_name?.join(", ")}</h3>
 
             <div className="modal-scroll-area">
               <p className="modal-description">
@@ -71,14 +79,17 @@ function BookDetailsModal({ isOpen, setOpenModal, book }) {
             </div>
 
             <div className="modal-actions">
-              <a
-                href={info.previewLink}
-                target="_blank"
-                rel="noreferrer"
+              <div
+                href="/"
                 className="modal-button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleReadNow();
+                }}
+                style={{ cursor: "pointer", textAlign: "center" }}
               >
-                Ler Preview
-              </a>
+                Read Now
+              </div>
               <button
                 className="modal-button secondary"
                 onClick={() => setOpenModal(false)}

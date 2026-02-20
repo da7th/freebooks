@@ -32,7 +32,7 @@ function Card({ genre, search }) {
         } else if (book.cover_edition_key) {
           coverUrl = `https://covers.openlibrary.org/b/olid/${book.cover_edition_key}-M.jpg`;
         } else if (book.isbn && book.isbn.length > 0) {
-          coverUrl = `https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-M.jpg`;
+          coverUrl = `https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`;
         }
 
         return (
@@ -54,7 +54,7 @@ function Card({ genre, search }) {
               <span className="card-category">{categoria}</span>
               <h3 className="card-title">{book.title}</h3>
               <p className="card-author">
-                {book.author_name[0] || "Autor Desconhecido"}
+                {(book.author_name && book.author_name[0]) || "Autor Desconhecido"}
               </p>
               <button
                 className="card-button"
