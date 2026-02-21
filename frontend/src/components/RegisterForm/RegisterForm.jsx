@@ -5,14 +5,15 @@ import axios from 'axios';
 
 function RegisterForm() {
   const [openModal, setOpenModal] = useState(false);
-  const [user, setUser] = useState("");
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post('http://freebooks.test/backend/', {user, email, password, confirmPassword});
+    const response = await axios.post('http://freebooks.test/backend/', {name, username, email, password, confirmPassword});
     console.log(response);
   }
 
@@ -21,8 +22,12 @@ function RegisterForm() {
       <div className="form-div">
         <h1 className="login-title">Registro</h1>
         <form className="login-register-form" onSubmit={handleSubmit}>
+
+          <label className="login-register-label" >Nome completo:</label>
+          <input className="login-register-input" type="text" name="name" onChange={(e) => setName(e.target.value)} />
+
           <label className="login-register-label" >Nome de usuário:</label>
-          <input className="login-register-input" type="text" name="user" onChange={(e) => setUser(e.target.value)} />
+          <input className="login-register-input" type="text" name="username" onChange={(e) => setUsername(e.target.value)} />
 
           <label className="login-register-label">E-mail:</label>
           <input className="login-register-input" type="email" name="email" onChange={(e) => setEmail(e.target.value)} />
