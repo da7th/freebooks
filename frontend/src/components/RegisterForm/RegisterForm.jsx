@@ -13,7 +13,7 @@ function RegisterForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post('http://freebooks.test/backend/', {name, username, email, password, confirmPassword});
+    const response = await axios.post('http://freebooks.test/backend/index.php', {name, username, email, password, confirmPassword});
     console.log(response);
   }
 

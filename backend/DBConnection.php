@@ -22,7 +22,7 @@ function adduser($conn, $name, $username, $email, $password) {
     $stmt->bindParam(':user_name', $name);
     $stmt->bindParam(':user_username', $username);
     $stmt->bindparam(':user_email', $email);
-    $stmt->bindParam(':user_password', $password);
+    $stmt->bindParam(':user_password', password_hash($password, PASSWORD_DEFAULT));
 
     return $stmt->execute();
     } catch (PDOException $e) {
