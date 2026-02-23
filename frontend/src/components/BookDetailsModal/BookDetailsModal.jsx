@@ -88,7 +88,7 @@ function BookDetailsModal({ isOpen, setOpenModal, book }) {
                 }}
                 style={{ cursor: "pointer", textAlign: "center" }}
               >
-                Read Now
+                Ler Agora
               </div>
               <button
                 className="modal-button secondary"

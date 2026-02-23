@@ -1,6 +1,8 @@
 import "./Header.css";
 
-function Header({search, setSearch}) {
+function Header({ search, setSearch, activeUser, handleLogout, loading }) {
+  if (loading) return <nav className="header-container">Carregando...</nav>;
+
   return (
     <nav className="header-container">
       <div className="header-logo">
@@ -8,7 +10,12 @@ function Header({search, setSearch}) {
       </div>
 
       <form className="search-bar" onSubmit={(e) => e.preventDefault()}>
-        <input type="search" placeholder="Pesquisar" value={search} onChange={(e) => setSearch(e.target.value)} />
+        <input
+          type="search"
+          placeholder="Pesquisar"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
         <button type="submit">
           <svg
             width="20"
@@ -26,15 +33,30 @@ function Header({search, setSearch}) {
           </svg>
         </button>
       </form>
-
-      <div className="header-menu">
-        <a href="/login" className="login-link">
-          Login
-        </a>
-        <a href="/register" className="register-btn">
-          Register
-        </a>
-      </div>
+      {activeUser ? (
+        <div className="header-menu">
+          <div
+            href="/"
+            className="register-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleLogout();
+            }}
+            style={{ cursor: "pointer", textAlign: "center" }}
+          >
+            Logout
+          </div>
+        </div>
+      ) : (
+        <div className="header-menu">
+          <a href="/login" className="login-link">
+            Login
+          </a>
+          <a href="/register" className="register-btn">
+            Register
+          </a>
+        </div>
+      )}
     </nav>
   );
 }

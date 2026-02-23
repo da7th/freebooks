@@ -15,10 +15,13 @@ function LoginForm() {
 
     try {
     const response = await axios.post('http://freebooks.test/backend/loginVerify.php', {username, password});
-    console.log(response);
+    // console.log(response);
 
     if (response.data.success) {
+      localStorage.setItem('username', response.data.username);
+      // console.log(response.data.username);
       navigate('/');
+      window.location.reload();
     }
     } catch (error) {
       console.error("Erro no login", error)

@@ -57,7 +57,6 @@ export function useCard(genre, search) {
         );
         setOriginalData(dataWithCover || []);
         setFilteredData(dataWithCover || []);
-        console.log(data.docs.title);
       } catch (error) {
         console.error("Erro na busca: ", error);
       } finally {
