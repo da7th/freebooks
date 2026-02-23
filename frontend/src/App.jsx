@@ -20,7 +20,7 @@ function App() {
   }, []);
 
     const handleLogout = () => {
-    localStorage.removeItem('user_username');
+    localStorage.removeItem('username');
     setUser(null);
     navigate('/login');
   }
