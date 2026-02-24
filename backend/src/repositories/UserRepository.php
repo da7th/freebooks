@@ -3,6 +3,7 @@
 namespace src\repositories;
 
 use PDOException;
+use PDO;
 use src\db\DBConnection;
 
 class UserRepository
@@ -37,6 +38,23 @@ class UserRepository
             return $stmt->execute();
         } catch (PDOException $e) {
             echo "Erro ao adicionar usuário: " . $e->getMessage();
+        }
+    }
+
+    public function handleLogin($username)
+    {
+        $sql = "SELECT user_id, user_username, user_password FROM users WHERE user_username = :user_username";
+
+        try {
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue('user_username', $username);
+        $stmt->execute();
+        if ($stmt->rowCount() == 1) {
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+         return $user;
+        }
+        } catch (PDOException $e) {
+            echo "Erro ao realizar login: " . $e->getMessage();
         }
     }
 }

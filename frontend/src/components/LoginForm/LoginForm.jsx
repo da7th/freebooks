@@ -14,7 +14,7 @@ function LoginForm() {
     e.preventDefault();
 
     try {
-    const response = await axios.post('http://freebooks.test/backend/loginVerify.php', {username, password});
+    const response = await axios.post('http://freebooks.test/backend/login', {username, password});
     // console.log(response);
 
     if (response.data.success) {
