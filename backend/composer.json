@@ -1,0 +1,15 @@
+{
+    "name": "erick/backend",
+    "autoload": {
+        "psr-4": {
+            "src\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "da7th",
+            "email": "erickestanislau25@gmail.com"
+        }
+    ],
+    "require": {}
+}

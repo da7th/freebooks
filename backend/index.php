@@ -1,41 +1,28 @@
 <?php
 
-include 'DBConnection.php';
-
 header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT");
 header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
 
-try {
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        // $data = json_decode(file_get_contents("php://input"));
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(204);
+    exit;
+}
 
-        $content = file_get_contents("php://input");
-        $data = json_decode($content, true);
+require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/src/routes/router.php';
+require __DIR__ . '/src/db/DBConnection.php';
 
-        // $name = $data->name;
-        // $username = $data->username;
-        // $email = $data->email;
-        // $password = $data->password;
-        // $confirmPassword = $data->confirmPassword;
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$uri = str_replace('/backend', '', $uri);
+$uri = rtrim($uri, '/') ?: '/';
+$method = $_SERVER['REQUEST_METHOD'];
 
-        // $response = [
-        //     "user" => $user,
-        //     "email" => $email,
-        //     "password" => $password,
-        //     "confirmPassword" => $confirmPassword
-        // ];
-
-        // echo json_encode($response);
-
-        $name = $data["name"] ?? '';
-        $username = $data["username"] ?? '';
-        $email = $data["email"] ?? '';
-        $password = $data["password"] ?? '';
-
-        adduser($conn, $name, $username, $email, $password);
-    }
-} catch (PDOException $e) {
-    echo "Falha ao adicionar usuário" . $e->getMessage();
+if(isset($routes[$method][$uri])) {
+    [$controller, $action] = $routes[$method][$uri];
+    load($controller, $action);
+} else {
+    http_response_code(404);
+    echo json_encode(["error" => "Rota não encontrada"]);
 }
