@@ -2,7 +2,8 @@ import { useState } from "react";
 import "../LoginForm/LoginForm.css";
 import Modal from "../Modal/Modal";
 import axios from 'axios';
-
+import { validateRegister } from '../../js/functions';
+ 
 function RegisterForm() {
   const [openModal, setOpenModal] = useState(false);
   const [name, setName] = useState("");
@@ -11,8 +12,19 @@ function RegisterForm() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [errors, setErrors] = useState({});
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const validationErrors = validateRegister({name, username, email, password, confirmPassword})
+
+    setErrors(validationErrors);
+
+    if(Object.keys(validationErrors).length > 0) {
+      return;
+    }
+
     const response = await axios.post('http://freebooks.test/backend/register', {name, username, email, password, confirmPassword});
     console.log(response);
   }
@@ -21,22 +33,27 @@ function RegisterForm() {
     <div>
       <div className="form-div">
         <h1 className="login-title">Registro</h1>
-        <form className="login-register-form" onSubmit={handleSubmit}>
+        <form className="login-register-form" id="register-form" onSubmit={handleSubmit}>
 
           <label className="login-register-label" >Nome completo:</label>
-          <input className="login-register-input" type="text" name="name" onChange={(e) => setName(e.target.value)} />
+          <input className="login-register-input" type="text" id="name" name="name" onChange={(e) => setName(e.target.value)} />
+          {errors.name && <span className="error-msg">{errors.name}</span>}
 
           <label className="login-register-label" >Nome de usuário:</label>
-          <input className="login-register-input" type="text" name="username" onChange={(e) => setUsername(e.target.value)} />
+          <input className="login-register-input" type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} />
+          {errors.username && <span className="error-msg">{errors.username}</span>}
 
           <label className="login-register-label">E-mail:</label>
-          <input className="login-register-input" type="email" name="email" onChange={(e) => setEmail(e.target.value)} />
+          <input className="login-register-input" type="email" id="email" name="email" onChange={(e) => setEmail(e.target.value)} />
+          {errors.email && <span className="error-msg">{errors.email}</span>}
 
           <label className="login-register-label">Senha:</label>
-          <input className="login-register-input" type="password" name="password" onChange={(e) => setPassword(e.target.value)} />
+          <input className="login-register-input" type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)} />
+          {errors.password && <span className="error-msg">{errors.password}</span>}
 
           <label className="login-register-label">Confirme sua senha:</label>
-          <input className="login-register-input" type="password" name="confirmPassword" onChange={(e) => setConfirmPassword(e.target.value)} />
+          <input className="login-register-input" type="password" id="confirmPassword" name="confirmPassword" onChange={(e) => setConfirmPassword(e.target.value)} />
+          {errors.confirmPassword && <span className="error-msg">{errors.confirmPassword}</span>}
 
           <button className="login-register-button" type="submit">Registrar</button>
         </form>

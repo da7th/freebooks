@@ -1,25 +1,47 @@
-// export async function getBooks() {
-//     let url = "https://www.googleapis.com/books/v1/volumes?q=subject:fiction&orderBy=newest&maxResults=40&key=AIzaSyCF6-ohKrgU1H_cx_Zmq7lk4CbPsKMvZkU"
+export function validateRegister(values) {
+  let errors = [];
 
-//     const data = await fetch(url);
+  if (values.name === "") {
+    errors.name = "Digite um nome.";
+  } else {
+    if (values.name.length < 3) {
+      errors.name = "O nome deve ter pelo menos 3 caracteres.";
+    }
+  }
 
-//     const books = await data.json();
+  if (values.username === "") {
+    errors.username = "Digite um nome de usuário.";
+  } else {
+    if (values.username.includes(" ") || values.username === "") {
+      errors.username = "Nome de usuário inválido ou contém espaços.";
+    }
+  }
 
-//     return books;
-// }
+  if (values.email === "") {
+    errors.email = "Digite um e-mail.";
+  } else {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!"" && !emailRegex.test(values.email)) {
+      errors.email = "Insira um e-mail válido.";
+    }
+  }
 
-// export async function getCategories() {
-    
-// }
+  if(values.password === "") {
+    errors.password = "Digite uma senha.";
+  } else {
+  if (!"" && values.password.length < 6) {
+    errors.password = "A senha deve ter no mínimo 6 caracteres.";
+  }
+  }
 
-async function fetchTitle() {
-        const response = await fetch("https://openlibrary.org/search.json?q=has_fulltext:true&language:por&sort=new");
-        const data = await response.json();
-        // console.log(data.docs);
+  if(values.confirmPassword === "") {
+    errors.confirmPassword = "Confirme sua senha.";
+  } else {
+      if (!"" && values.password !== values.confirmPassword) {
+    errors.confirmPassword = "As senhas não coincidem.";
+  }
+  }
 
-        for(let book of data.docs) {
-            console.log(book.title);
-        }
+
+  return errors;
 }
-
-fetchTitle();
