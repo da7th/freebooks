@@ -21,12 +21,24 @@ function RegisterForm() {
 
     setErrors(validationErrors);
 
-    if(Object.keys(validationErrors).length > 0) {
-      return;
+    // if(Object.keys(validationErrors).length > 0) {
+    //   return;
+    // }
+
+    try {
+      const response = await axios.post('http://freebooks.test/backend/register', {name, username, email, password, confirmPassword});
+    console.log(response);    
+    } catch (error) {
+      if(error.response && error.response.status === 422) {
+        setErrors(error.response.data.errors);
+      } else {
+        console.error("Erro inesperado no servidor.");
+      }
     }
 
-    const response = await axios.post('http://freebooks.test/backend/register', {name, username, email, password, confirmPassword});
-    console.log(response);
+
+
+
   }
 
   return (
