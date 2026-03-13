@@ -23,6 +23,7 @@ $routes = [
     'GET' => [],
     'POST' => [
         '/login' => ["UserController", "login"],
-        '/register' => ["UserController", "register"]
+        '/register' => ["UserController", "register"],
+        '/account' =>  ["AccountController", "account"]
     ]
 ];

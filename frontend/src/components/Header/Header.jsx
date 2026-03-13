@@ -35,7 +35,7 @@ function Header({ search, setSearch, activeUser, handleLogout, loading }) {
       </form>
       {activeUser ? (
         <div className="header-menu">
-          <a href="/" className="login-link">
+          <a href="/conta" className="login-link">
             Minha Conta
           </a>
           <div

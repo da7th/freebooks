@@ -1,0 +1,23 @@
+/* Container que segura Sidebar e Main */
+.account-content {
+    display: flex;
+    flex-direction: row; /* Alinha horizontalmente */
+    align-items: flex-start; /* Alinha os itens no topo */
+    max-width: 1400px; /* Largura máxima do site */
+    margin: 0 auto; /* Centraliza o conteúdo na tela */
+    padding: 20px;
+    gap: 20px; /* Espaço entre a sidebar e os livros */
+}
+
+/* Garante que a Main ocupe o espaço restante */
+.main-container {
+    flex: 1;
+    width: 100%;
+}
+
+/* Ajuste opcional: se a Sidebar estiver sumindo, force uma largura mínima nela */
+/* Você pode colocar isso no Sidebar.css ou aqui */
+.sidebar-div { 
+    min-width: 250px; 
+    flex: 0 0 250px;
+}
