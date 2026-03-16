@@ -1,7 +1,7 @@
 import "./Sidebar.css";
 // import { useState, useEffect } from "react";
 
-function Sidebar({onSelectGenre, activeGenre}) {
+function Sidebar({onSelectGenre, onSelectItem, activeGenre, title = "Categories", items = []}) {
 
 const categories = [
   'Fiction', 'Fantasy', 'Romance', 'Thriller', 'Mystery', 'Horror', 
@@ -16,12 +16,17 @@ const categories = [
   'Family', 'Relationships', 'Humor'
 ];
 
+const listToRender = items.length > 0 ? items : categories;
+
   return (
     <div className="sidebar-div">
-      <h2 className="sidebar-title">Categories</h2>
+      <h2 className="sidebar-title">{title}</h2>
       <nav className="sidebar-nav">
-        {categories.map(cat => (
-        <button key={cat} onClick={() => onSelectGenre(cat.toLowerCase())} className="x-name">
+        {listToRender.map(cat => (
+        <button key={cat} onClick={() => {
+          if (onSelectItem) onSelectItem(cat);
+          else if (onSelectGenre) onSelectGenre(cat.toLowerCase());
+        }} className={`x-name ${activeGenre === cat.toLowerCase() ? 'active' : ''}`}>
           {cat}
         </button>
         ))}
